@@ -23,6 +23,19 @@ app.post("/api/login", (req, res) => {
         res.json({ id: user.id, username: user.username });
     }
 });
+app.post("/api/register", (req,res) => {
+    const user = users.find(u => u.username == req.body.username)
+    if(!user) {
+        const newUser = users.push({
+            id:users.at(-1).id+1,
+            username:req.body.username,
+            password:req.body.password
+        });
+        res.json(newUser)
+    } else {
+        return res.status(409).json({error:"This user is already existed"})
+    }
+})
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

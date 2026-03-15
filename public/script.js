@@ -1,27 +1,14 @@
-import users from './localStorage.js';
 let logInUser = null;
 let logInData = null;
 
 window.getInform = () => {
     const user = document.getElementById("username").value;
     const pass = document.getElementById("password").value;
-    let flag = true;
-    for(let elem in users) {
-        if(users[elem].username == user) {
-            alert("User with same username already existed");
-            flag = false;
-            break;
-        }
+    const newUser = {
+        username:user,
+        password:pass
     }
-    if(flag == true) {
-        users.push(
-            {
-            id:users.at(-1).id+1,
-            username:user,
-            password:`${pass}`
-            }
-        )
-    }
+    serverReg(newUser)
 }
 window.logIn = () => {
     const user = document.getElementById("username").value;
@@ -42,7 +29,8 @@ async function serverLogIn(user) {
         body:JSON.stringify(user)
     });
     if(!response.ok) {
-        throw new Error('Network responce is not ok');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Network response is not ok');
     }
     const result = await response.json();
     console.log('Success:',result);
@@ -50,6 +38,26 @@ async function serverLogIn(user) {
         console.error('Error:',error)
     }
 }
+async function serverReg(newUser) {
+    try {
+    const response = await fetch("/api/register", {
+        method:'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(newUser)
+        })
+    if(!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Network response is not ok');
+    }
+    const result = await response.json();
+    console.log('Success:',result);
+    }
+    catch (error) {
+        console.error('Error:',error)
+    }
+    } 
 window.showUp = () => {
     console.log(users)
 }
