@@ -6,13 +6,12 @@ const PORT = 3000;
 app.use(express.static('public'));
 app.use(express.json());
 
-let users = [
-  {
-    id: 1,
-    username: 'admin',
-    password: 'admin',
-  },
-];
+const defaultUsers = [{ id: 1, username: 'admin', password: 'admin' }];
+let users = defaultUsers.map((u) => ({ ...u }));
+
+function resetUsers() {
+  users = defaultUsers.map((u) => ({ ...u }));
+}
 
 app.post('/api/login', (req, res) => {
   const user = users.find((u) => u.username == req.body.username);
@@ -53,12 +52,16 @@ app.get('/api/user/:id', (req, res) => {
   if (!user) {
     return res.status(404).json({ error: 'User is not found' });
   }
-
   res.json({
     id: user.id,
     username: user.username,
   });
 });
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = { app, resetUsers };

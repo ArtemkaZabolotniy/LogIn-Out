@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "test": "jest",
     "format": "prettier . --write",
     "format:check": "prettier . --check"
   },
@@ -7,6 +8,8 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
     "prettier": "^3.8.1"
   }
 }
