@@ -59,9 +59,6 @@ async function serverReg(newUser) {
     console.error('Error:', error);
   }
 }
-window.showUp = () => {
-  console.log(users);
-};
 
 async function LoadUser(user) {
   const response = fetch('/');

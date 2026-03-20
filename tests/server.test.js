@@ -113,3 +113,29 @@ describe('GET /user/:id', () => {
     expect(res.statusCode).toBe(404);
   });
 });
+
+// ─── POST /api/search ─────────────────────────────────────────────────────────
+
+describe('POST /api/search', () => {
+  test('returns found user by username', async () => {
+    const res = await request(app).post('/api/search').send({ username: 'admin' });
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toMatchObject({ id: 1, username: 'admin' });
+    expect(res.body.password).toBeUndefined();
+  });
+
+  test('returns 404 when user is not found', async () => {
+    const res = await request(app).post('/api/search').send({ username: 'unknown' });
+
+    expect(res.statusCode).toBe(404);
+    expect(res.body.error).toBeTruthy();
+  });
+
+  test('returns 400 for empty username', async () => {
+    const res = await request(app).post('/api/search').send({ username: '   ' });
+
+    expect(res.statusCode).toBe(400);
+    expect(res.body.error).toBeTruthy();
+  });
+});
