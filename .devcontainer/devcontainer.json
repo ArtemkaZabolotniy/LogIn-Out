@@ -1,0 +1,38 @@
+{
+  "name": "Node.js & Playwright Env",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  
+  "remoteUser": "node",
+
+  // where to save browser binaries for playwright?
+  "containerEnv": {
+  "PLAYWRIGHT_BROWSERS_PATH": "/home/node/.cache/ms-playwright"
+  },
+
+ // create persistence storage to 'cache' browser binaries and other dependencies
+  "mounts": [
+    // Keeps node_modules in a named Docker volume
+    "source=node_modules_web_messenger,target=${containerWorkspaceFolder}/node_modules,type=volume",
+    // Keeps playwright's heavy dependencies in a named Docker volume
+    "source=pw-browsers_web_messenger,target=/home/node/.cache/ms-playwright,type=volume"
+  ],
+
+  // npm ci - enforces exact setup from package-lock.json
+  // npx playwright install - installs browser binaries (into cached folder mapped to named volume in previous step)
+  "postCreateCommand": "mkdir -p node_modules /home/node/.cache/ms-playwright && sudo chown node:node node_modules /home/node/.cache/ms-playwright && npm ci && npx playwright install",
+
+  // 4. Give the developer the right tools automatically
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "ms-playwright.playwright"
+      ]
+    }
+  },
+
+  // automatically maps port
+  "forwardPorts": [3000]
+}

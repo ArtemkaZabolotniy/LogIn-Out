@@ -1,1 +1,4 @@
 node_modules/
+plans.md
+.playwright/
+pw-browsers/
