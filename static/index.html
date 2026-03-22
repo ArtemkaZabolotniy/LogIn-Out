@@ -3,34 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Massanger</title>
+    <link rel="icon" href="/assets/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div id="window">
-        <div id="insiders">
-            <p>
-                <h1>
-                    LogIn
-                </h1>
-            </p>
-            <p>
-                <h3>
-                    username
-                </h3>
-                <input type="text" id="username">
-            </p>
-            <p>
-                <h3>
-                    password
-                </h3>
-                <input type="text" id="password">
-            </p>
-            <button id="login" onclick="window.logIn();">LogIn</button>
-            <button id="register" onclick='window.getInform()'>Register</button>
-            <button id="show" onclick="window.showUp()">show!</button>
+    <div id="hello">
+        <img src="./assets/logo.png" alt="">
+        <div id="hello_text">
+            Welcome to Web Massanger
+        </div>
+        <div id="under_hello">
+            Create your account to get started or logIn
         </div>
     </div>
-    <script src="/js/script.js" type="module"></script>
+    <div id="window">
+        <div id="container">
+         <div class="inform">
+            <span class="info_name">Username</span>
+            <input type="text" placeholder="Choose a username" id="username">
+         </div>
+            <div class="inform">
+            <span class="info_name">Password</span>
+            <input type="text" placeholder="Create a strong password" id="password">
+         </div>
+         <button class="btn" onclick='getInform()'>Create Account</button><br>
+         <button class="btn" onclick="logIn()">SignIn</button>
+        </div>
+    </div>
+    <script src="/js/script.js" type=""></script>
 </body>
 </html>

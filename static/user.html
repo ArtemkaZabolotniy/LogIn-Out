@@ -3,22 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Massanger</title>
+    <link rel="icon" href="/assets/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="/css/user_style.css" />
   </head>
   <body>
     <main>
       <div id="burger">
+        <span id="msg">
+          Massages
+        </span>
         <div id="search-bar">
-          <input type="text" id="search" />
+          <input type="text" id="search" placeholder="Search conversation"/>
         </div>
         <div id="chats">
-          <!-- <div class="chat">
-            <div class="left">
-              <img src="/assets/user_icon.png" alt="" class="user_icon" />
-              knownUser
-            </div>
-          </div>
           <div class="chat">
             <div class="left">
               <img src="/assets/user_icon.png" alt="" class="user_icon" />
@@ -36,7 +38,13 @@
               <img src="/assets/user_icon.png" alt="" class="user_icon" />
               knownUser
             </div>
-          </div> -->
+          </div>
+          <div class="chat">
+            <div class="left">
+              <img src="/assets/user_icon.png" alt="" class="user_icon" />
+              knownUser
+            </div>
+          </div>
         </div>
       </div>
       <div id="user_chat">
@@ -47,19 +55,23 @@
             class="user_icon"
             style="margin-right: 20px"
           />
-          Username
+          <span>
+            Username
+          </span>
         </div>
         <div id="main_chat">
-          <!-- <div class="my_massege"><span class="my_text"> Hello </span></div>
-          <div class="friend_massege"><span class="friend_text"> Hi! </span></div>
-          <div class="my_massege"><span class="my_text"> How are you? </span></div>
+           <div class="my_massege"><span class="my_text"> Hey! How's the project coming along? </span></div>
+          <div class="friend_massege"><span class="friend_text"> It's going really well! I just finished the main 
+          components. Should be ready for review by tomorrow. </span></div>
+          <!--<div class="my_massege"><span class="my_text"> How are you? </span></div>
           <div class="friend_massege">
             <span class="friend_text"> Im fine, how about you? </span>
           </div> -->
         </div>
-        <div id="send">
-          <input type="text" name="" id="input_send" />
-        </div>
+    <div id="send">
+      <input type="text" name="" id="input_send" placeholder="Type a message..." /> 
+      <button id="send_massage">Send</button>
+    </div>
       </div>
     </main>
   </body>

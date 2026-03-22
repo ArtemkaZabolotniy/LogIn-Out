@@ -1,7 +1,7 @@
 let logInUser = null;
 let logInData = null;
 
-window.getInform = () => {
+function getInform () {
   const user = document.getElementById('username').value;
   const pass = document.getElementById('password').value;
   const newUser = {
@@ -10,7 +10,7 @@ window.getInform = () => {
   };
   serverReg(newUser);
 };
-window.logIn = () => {
+function logIn () {
   const user = document.getElementById('username').value;
   const pass = document.getElementById('password').value;
   const userData = {
