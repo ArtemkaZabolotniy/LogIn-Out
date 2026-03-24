@@ -4,8 +4,9 @@
   "description": "test",
   "main": "localStorage.js",
   "scripts": {
-    "test": "jest",
-    "start": "node server.js"
+    "test": "jest --testPathIgnorePatterns=e2e",
+    "test:e2e": "playwright test",
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,8 @@
     "test": "tests"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0",
     "jest": "^30.3.0",
     "supertest": "^7.2.2"
   }

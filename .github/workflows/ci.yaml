@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  unit-tests:
     runs-on: ubuntu-latest
     steps:
     - name: checkout repo
@@ -19,3 +19,26 @@ jobs:
       run: npm ci --ignore-scripts
     - name: run tests
       run: npm test
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+    - name: setup nodejs
+      uses: actions/setup-node@v4
+      with: 
+        node-version: '22'
+    - name: install deps
+      run: npm ci --ignore-scripts
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test
+    - name: upload test report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
