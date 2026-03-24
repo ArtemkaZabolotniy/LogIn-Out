@@ -1,9 +1,13 @@
+# node
 node_modules/
+
+#custom
 plans.md
-.playwright/
-pw-browsers/
+key-insights.md
 
 # Playwright
+.playwright/
+pw-browsers/
 /test-results/
 /playwright-report/
 /blob-report/
