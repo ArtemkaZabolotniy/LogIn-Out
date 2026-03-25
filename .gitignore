@@ -1,3 +1,6 @@
+# private
+.env
+
 # node
 node_modules/
 
@@ -13,3 +16,18 @@ pw-browsers/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+crash.log

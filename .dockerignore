@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Docker configuration
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Tests and Tooling
+e2e/
+tests/
+*.test.js
+*.spec.js
+.vscode/
+.devcontainer/
+.github/
+.husky/
+
+# Version Control
+.git
+.gitignore
+
+# Environment/Secrets
+.env
+
+# Playwright
+.playwright/
+pw-browsers/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Other
+README.md
+plans.md
+key-insights.md
