@@ -24,5 +24,13 @@
     "@types/node": "^25.5.0",
     "jest": "^30.3.0",
     "supertest": "^7.2.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtemkaZabolotniy/web_messenger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ArtemkaZabolotniy/web_messenger/issues"
+  },
+  "homepage": "https://github.com/ArtemkaZabolotniy/web_messenger#readme"
 }
