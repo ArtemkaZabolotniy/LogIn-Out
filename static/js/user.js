@@ -1,3 +1,4 @@
+const chatsContainer = document.querySelector('#chats');
 let currentUser;
 
 async function loadUserFromUrl() {
@@ -40,7 +41,7 @@ async function searchUser() {
     if (findedUser && !isKnownUser) {
       knownUsers.push(findedUser);
       document.querySelector('#chats').innerHTML += `
-      <div class="chat">
+      <div class="chat" data-id='${findedUser.id}'>
         <div class="left">
           <img src="/client/img/user_icon.png" alt="" class="user_icon" />
           ${findedUser.username}
@@ -56,4 +57,37 @@ async function searchUser() {
     console.log('Error:', error);
   }
 }
+
 searchBtn.addEventListener('keydown', searchUser);
+
+let activeChat = '';
+
+chatsContainer.addEventListener('click', getActiveUser);
+function getActiveUser (event) {
+  const clickedChat = event.target.closest('.chat');
+  if (!clickedChat) return;
+
+  const userId = clickedChat.dataset.id;
+  activeChat = knownUsers.find((u) => u.id === Number(userId));
+}
+
+const myConnection  = new WebSocket('ws://'+window.location.host);
+myConnection.onopen = function() {
+   console.log("Server is opened in user");
+}
+
+const sendBtn = document.querySelector('#send_massage');
+const inputValue = document.querySelector('#input_send')
+
+sendBtn.addEventListener('click', sendMsg)
+
+const sendMsg = () => {
+  const sendValue = JSON.stringify(inputValue.value);
+  myConnection.send(sendValue);
+}
+
+myConnection.onmessage(event => {
+  const unpackedData = JSON.parse(event.data);
+  const chat = document.querySelector('#main_chat');
+  chat.innerHTML += unpackedData;
+})
