@@ -4,8 +4,7 @@ function setupWebSocket(server) {
   const wss = new WebSocket.Server({ server });
 
   wss.on('connection', (socket) => {
-    socket.send('TEST MESSAGE');
-    console.log('Client connected');
+    console.log('User is online');
 
     socket.on('message', (msg) => {
       console.log('Message:', msg.toString());
