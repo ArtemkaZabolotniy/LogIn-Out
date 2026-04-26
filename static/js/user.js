@@ -60,7 +60,7 @@ async function searchUser() {
 
 searchBtn.addEventListener('keydown', searchUser);
 
-let activeChat = '';
+let activeChat;
 
 chatsContainer.addEventListener('click', getActiveUser);
 function getActiveUser (event) {
@@ -79,15 +79,22 @@ myConnection.onopen = function() {
 const sendBtn = document.querySelector('#send_massage');
 const inputValue = document.querySelector('#input_send')
 
-sendBtn.addEventListener('click', sendMsg)
-
 const sendMsg = () => {
-  const sendValue = JSON.stringify(inputValue.value);
-  myConnection.send(sendValue);
+  const sendValue = inputValue.value;
+  const fullMsg = {
+    type:'sendMsg',
+    fromId:currentUser.id,
+    toId:activeChat.id,
+    text:sendValue
+  }
+  myConnection.send(JSON.stringify(fullMsg));
 }
 
-myConnection.onmessage(event => {
+sendBtn.addEventListener('click', sendMsg)
+
+
+myConnection.onmessage = function (event)  {
   const unpackedData = JSON.parse(event.data);
   const chat = document.querySelector('#main_chat');
   chat.innerHTML += unpackedData;
-})
+}
