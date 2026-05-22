@@ -1,11 +1,17 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-
 const PORT = 3000;
 const HOST = '0.0.0.0';
+const http = require('http');
+
+const setupWebSocket = require ('./websocket');
+const server = http.createServer(app);
+setupWebSocket(server);
+
 app.use(express.static(path.join(__dirname, '../static')));
 app.use(express.json());
+
 
 const defaultUsers = [
   {
@@ -83,7 +89,7 @@ app.get('/api/user/:id', (req, res) => {
 });
 
 if (require.main === module) {
-  app.listen(PORT, HOST, () => {
+  server.listen(PORT, HOST, () => {
   console.log(`Server running on http://${HOST}:${PORT}`);
   });
 }

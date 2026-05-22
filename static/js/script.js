@@ -35,6 +35,11 @@ async function serverLogIn(user) {
     const result = await response.json();
     console.log('Success:', result);
     if (result) {
+        sessionStorage.setItem('userId', String(result.id));
+        sessionStorage.setItem('userInfo', JSON.stringify({
+        id: result.id,
+        username: result.username,
+        }));
       window.location.href = '/user/' + encodeURIComponent(result.id);
     }
   } catch (error) {

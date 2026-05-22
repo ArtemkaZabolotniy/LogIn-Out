@@ -23,6 +23,15 @@
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.5.0",
     "jest": "^30.3.0",
+    "prettier": "^3.8.3",
     "supertest": "^7.2.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtemkaZabolotniy/web_messenger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ArtemkaZabolotniy/web_messenger/issues"
+  },
+  "homepage": "https://github.com/ArtemkaZabolotniy/web_messenger#readme"
 }
