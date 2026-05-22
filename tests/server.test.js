@@ -1,5 +1,11 @@
 const request = require('supertest');
-const { app, resetUsers, findUserByUsername, findUserById, isPasswordValid } = require('../src/server');
+const {
+  app,
+  resetUsers,
+  findUserByUsername,
+  findUserById,
+  isPasswordValid,
+} = require('../src/server');
 
 beforeEach(() => {
   resetUsers();
@@ -127,6 +133,22 @@ describe('POST /api/search', () => {
 
   test('returns 404 when user is not found', async () => {
     const res = await request(app).post('/api/search').send({ username: 'unknown' });
+
+    expect(res.statusCode).toBe(404);
+    expect(res.body.error).toBeTruthy();
+  });
+});
+
+describe('GET /api/chats/:id', () => {
+  test('returns empty list for existing user without chats', async () => {
+    const res = await request(app).get('/api/chats/1');
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual([]);
+  });
+
+  test('returns 404 for non-existing user', async () => {
+    const res = await request(app).get('/api/chats/9999');
 
     expect(res.statusCode).toBe(404);
     expect(res.body.error).toBeTruthy();

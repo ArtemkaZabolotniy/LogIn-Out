@@ -3,7 +3,7 @@ body {
   margin: 0;
   height: 100vh;
   font-family: 'Red Hat Display', sans-serif;
-  color:#FFFFFF;
+  color: #ffffff;
 }
 main {
   display: flex;
@@ -17,17 +17,18 @@ main {
 }
 #burger {
   width: 320px;
-  background-color: #2C3E50;
+  background-color: #2c3e50;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .chat {
-  width: 250px;
-  background-color: rgba(41, 65, 114, 0.2);
+  width: 230px;
+  background-color: #3b5a8f;
   margin: 0;
   margin-bottom: 10px;
+  border-radius: 8px;
 }
 .user_icon {
   width: 50px;
@@ -43,9 +44,9 @@ main {
 #search {
   width: 230px;
   border: none;
-  background-color: #1A252F;
+  background-color: #1a252f;
   font-size: 18px;
-  color:#9CA3AF;
+  color: #9ca3af;
   margin: 0;
   padding: 1px;
   height: 30px;
@@ -56,6 +57,96 @@ main {
 #search-bar {
   flex-shrink: 0;
 }
+#new-group-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 230px;
+  padding: 10px 16px;
+  margin-bottom: 14px;
+  background-color: #294172;
+  color: #ffffff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+#new-group-btn:hover {
+  background-color: #3b5a8f;
+}
+#new-group-btn:active {
+  background-color: #1e3260;
+}
+
+#group-create-panel {
+  width: 230px;
+  margin-bottom: 14px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(26, 37, 47, 0.65);
+  border: 1px solid rgba(126, 159, 217, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.modal_window #group-create-panel {
+  width: 100%;
+  flex-shrink: 0;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(126, 159, 217, 0.25);
+}
+
+#group-name-input {
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(120, 153, 214, 0.45);
+  background-color: #1a252f;
+  color: #e8f1ff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 14px;
+}
+
+#group-name-input::placeholder {
+  color: #8ea4c0;
+}
+
+#group-name-input:focus {
+  outline: none;
+  border-color: rgba(168, 201, 255, 0.85);
+  box-shadow: 0 0 0 2px rgba(106, 155, 238, 0.25);
+}
+
+#create-group-btn {
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3c65ad 0%, #2d4f87 100%);
+  color: #ffffff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+
+#create-group-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+#create-group-btn:active {
+  transform: translateY(0);
+}
 #chats {
   display: flex;
   flex-direction: column;
@@ -65,7 +156,7 @@ main {
   overflow-y: auto;
 }
 #user_chat {
-  background-color: #1A252F;
+  background-color: #1a252f;
   width: 100%;
   height: 100%;
   display: flex;
@@ -76,7 +167,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #2C3E50;
+  background-color: #2c3e50;
   border-left: 1px solid black;
   flex-shrink: 0;
 }
@@ -90,48 +181,46 @@ main {
   justify-content: flex-end;
 }
 #main_chat {
- display: flex;
- flex-direction: column;
- align-items: center;
- flex: 1;
- overflow-y: auto;
- padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 0;
 }
 #main_chat::-webkit-scrollbar {
   width: 8px;
 }
 #main_chat::-webkit-scrollbar-track {
-  background: #1A252F;
+  background: #1a252f;
 }
 #main_chat::-webkit-scrollbar-thumb {
   background: #294172;
   border-radius: 4px;
 }
 #main_chat::-webkit-scrollbar-thumb:hover {
-  background: #3B5A8F;
+  background: #3b5a8f;
 }
-.my_text,.friend_text {
-   background-color:#294172 ;
+.my_text,
+.friend_text {
+  background-color: #294172;
   display: inline-block;
-   padding: 10px;
-   padding-left: 15px;
-   padding-right: 15px;
-   border-radius: 10px;
-   font-size: 24px;
-   margin-bottom: 10px;
-   max-width: 500px;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+  font-size: 24px;
+  margin-bottom: 10px;
+  max-width: 500px;
   white-space: normal;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 .friend_text {
-    background-color:#3B4A5C;
-}
-#input_send {
-
+  background-color: #3b4a5c;
 }
 #send {
-  background-color: #2C3E50;
+  background-color: #2c3e50;
   height: 105px;
   display: flex;
   align-items: center;
@@ -146,13 +235,202 @@ main {
   font-size: 24px;
   font-family: 'Red Hat Display', sans-serif;
   background-color: #294172;
-  border:none;
-  color:#FFFFFF;
+  border: none;
+  color: #ffffff;
 }
 #input_send {
   width: 1000px;
   height: 50px;
   font-size: 24px;
-  background-color: #1A252F;
+  background-color: #1a252f;
   border: none;
+}
+
+dialog {
+  height: 500px;
+  width: 300px;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.modal_window {
+  width: min(560px, calc(100vw - 32px));
+  min-height: 360px;
+  max-height: min(78vh, 720px);
+  margin: auto;
+  position: relative;
+  border: 1px solid rgba(130, 169, 232, 0.3);
+  border-radius: 20px;
+  padding: 22px;
+  padding-top: 56px;
+  background:
+    radial-gradient(circle at 12% -8%, rgba(80, 128, 217, 0.35), transparent 48%),
+    radial-gradient(circle at 100% 120%, rgba(67, 109, 186, 0.32), transparent 45%), #223044;
+  box-shadow:
+    0 24px 60px rgba(7, 12, 20, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: #f4f7ff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  animation: modalOpen 220ms ease-out;
+}
+
+.modal_window .modal_close_btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(170, 204, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(29, 45, 69, 0.95);
+  color: #dfeeff;
+  font-size: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.modal_window .modal_close_btn:hover {
+  transform: translateY(-1px);
+  background: rgba(50, 75, 112, 0.95);
+  border-color: rgba(204, 225, 255, 0.75);
+}
+
+.modal_window .modal_close_btn:active {
+  transform: translateY(0);
+}
+
+.modal_window::before {
+  content: 'Select users for group';
+  flex-shrink: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #f8fbff;
+  margin: 2px 0 8px;
+  text-shadow: 0 1px 0 rgba(12, 18, 31, 0.55);
+}
+
+.modal_window:empty::after {
+  content: 'No users available yet';
+  color: #c0cede;
+  text-align: center;
+  background: rgba(34, 52, 77, 0.65);
+  border: 1px dashed rgba(132, 170, 230, 0.45);
+  border-radius: 12px;
+  padding: 22px;
+}
+
+.modal_window .chat {
+  width: 100%;
+  margin: 0;
+  border: 1px solid rgba(136, 176, 237, 0.25);
+  background: linear-gradient(150deg, rgba(73, 108, 170, 0.9) 0%, rgba(48, 75, 124, 0.9) 100%);
+  border-radius: 14px;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+  cursor: pointer;
+}
+
+.modal_window .chat:hover {
+  transform: translateY(-2px);
+  border-color: rgba(173, 205, 255, 0.65);
+  box-shadow: 0 12px 25px rgba(10, 17, 31, 0.38);
+}
+
+.modal_window .chat:active {
+  transform: translateY(0);
+}
+
+.modal_window .left {
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 14px;
+}
+
+.modal_window .user_icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 2px solid rgba(182, 210, 255, 0.65);
+  background: rgba(22, 34, 53, 0.85);
+}
+
+.modal_window .innerUserName {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #f6f9ff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modal-cards {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  align-content: start;
+  padding: 4px 4px 4px 2px;
+}
+
+.modal-cards::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal-cards::-webkit-scrollbar-track {
+  background: rgba(24, 37, 57, 0.7);
+  border-radius: 999px;
+}
+
+.modal-cards::-webkit-scrollbar-thumb {
+  background: rgba(100, 145, 216, 0.85);
+  border-radius: 999px;
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .modal_window {
+    width: calc(100vw - 20px);
+    min-height: 300px;
+    max-height: 82vh;
+    border-radius: 16px;
+    padding: 16px;
+  }
+
+  .modal-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .modal_window::before {
+    font-size: 18px;
+  }
 }

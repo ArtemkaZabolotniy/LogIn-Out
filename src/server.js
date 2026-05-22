@@ -5,13 +5,12 @@ const PORT = 3000;
 const HOST = '0.0.0.0';
 const http = require('http');
 
-const setupWebSocket = require ('./websocket');
+const { setupWebSocket, getChatsForUser } = require('./websocket');
 const server = http.createServer(app);
 setupWebSocket(server);
 
 app.use(express.static(path.join(__dirname, '../static')));
 app.use(express.json());
-
 
 const defaultUsers = [
   {
@@ -32,7 +31,7 @@ function resetUsers() {
 }
 
 app.post('/api/login', (req, res) => {
-  const user = findUserByUsername(users,req.body.username);
+  const user = findUserByUsername(users, req.body.username);
   if (!user) {
     return res.status(404).json({ error: 'User not found' });
   } else if (!isPasswordValid(user, req.body.password)) {
@@ -46,12 +45,12 @@ function findUserByUsername(users, user) {
   return users.find((u) => u.username == user);
 }
 
-function isPasswordValid(user,password) {
+function isPasswordValid(user, password) {
   return user.password === password;
 }
 
 app.post('/api/register', (req, res) => {
-  const user = findUserByUsername(users,req.body.username);
+  const user = findUserByUsername(users, req.body.username);
   if (!user) {
     const newUser = users.push({
       id: users.at(-1).id + 1,
@@ -65,12 +64,12 @@ app.post('/api/register', (req, res) => {
 });
 
 app.get('/user/:id', (req, res) => {
-  const user = findUserById(users,req.params.id);
+  const user = findUserById(users, req.params.id);
   if (!user) {
     return res.status(404).send('User not found');
   }
 
-  res.sendFile(path.join(__dirname,'..' ,'static', 'user.html'));
+  res.sendFile(path.join(__dirname, '..', 'static', 'user.html'));
 });
 
 function findUserById(users, id) {
@@ -78,7 +77,7 @@ function findUserById(users, id) {
 }
 
 app.get('/api/user/:id', (req, res) => {
-  const user = findUserById(users,req.params.id);
+  const user = findUserById(users, req.params.id);
   if (!user) {
     return res.status(404).json({ error: 'User is not found' });
   }
@@ -88,14 +87,23 @@ app.get('/api/user/:id', (req, res) => {
   });
 });
 
+app.get('/api/chats/:id', (req, res) => {
+  const user = findUserById(users, req.params.id);
+  if (!user) {
+    return res.status(404).json({ error: 'User is not found' });
+  }
+
+  res.json(getChatsForUser(req.params.id, users));
+});
+
 if (require.main === module) {
   server.listen(PORT, HOST, () => {
-  console.log(`Server running on http://${HOST}:${PORT}`);
+    console.log(`Server running on http://${HOST}:${PORT}`);
   });
 }
 
 app.post('/api/search', (req, res) => {
-  const searchUser = findUserByUsername(users,req.body.username);
+  const searchUser = findUserByUsername(users, req.body.username);
   if (searchUser) {
     res.json({ id: searchUser.id, username: searchUser.username });
   } else {
